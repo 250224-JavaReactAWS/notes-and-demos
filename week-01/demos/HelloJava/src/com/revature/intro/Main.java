@@ -1,3 +1,5 @@
+package com.revature.intro;
+
 public class Main {
     // This is a single line comment in Java
     /*

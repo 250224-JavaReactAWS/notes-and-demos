@@ -1,3 +1,5 @@
+package com.revature.intro;
+
 public class HelloStrings {
     // This is a new class which can have its own main method and act as its own program
 

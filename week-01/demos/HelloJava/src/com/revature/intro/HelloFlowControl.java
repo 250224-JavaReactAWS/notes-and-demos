@@ -1,3 +1,5 @@
+package com.revature.intro;
+
 import java.util.Scanner;
 
 public class HelloFlowControl {
