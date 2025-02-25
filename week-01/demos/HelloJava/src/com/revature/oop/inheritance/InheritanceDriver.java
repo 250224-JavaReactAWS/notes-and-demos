@@ -36,5 +36,14 @@ public class InheritanceDriver {
         System.out.println(tipzy.numberOfLegs);
 
 
+        Bird bert = new Bird("Bert");
+
+        // Since a Bird is a subclass or subtype of Animal I can access the animal class information and methods
+        // Bird class methods
+        bert.fly(20);
+
+        //Animal class methods
+        bert.getInformation();
+
     }
 }
