@@ -49,7 +49,7 @@ public class BiographyService {
     // TODO Get a single biography
     // Here we want to get a single biography object by its PK (Primary Key)
     public Biography getBioById(int biographyId){
-        return biographyDAO.getReferenceById(biographyId);
+        return biographyDAO.findById(biographyId).orElse(null);
     }
 
     // TODO Get all biographies with the same name

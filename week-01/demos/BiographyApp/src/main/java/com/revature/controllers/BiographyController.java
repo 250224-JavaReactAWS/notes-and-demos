@@ -58,6 +58,7 @@ public class BiographyController {
 
     // Todo Get All Biographies
     @GetMapping
+    // http://localhost:8080/bios
     public List<Biography> getAllBiosHandler(){
         return this.biographyService.getAllBiographies();
     }
@@ -67,8 +68,8 @@ public class BiographyController {
     // http://localhost:8080/bios/1
     // http://localhost:8080/bios/2
     // http://localhost:8080/bios/3
-    @GetMapping("{bioId}")
-    public Biography getBioByIdHandler(@PathVariable int bioId){
+    @GetMapping("/{bioId}")
+    public Biography getBioByIdHandler(@PathVariable(name = "bioId") int bioId){
         return this.biographyService.getBioById(bioId);
     }
 
