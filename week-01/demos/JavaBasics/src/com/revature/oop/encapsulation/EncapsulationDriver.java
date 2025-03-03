@@ -27,6 +27,21 @@ public class EncapsulationDriver {
         // But what if I need to update them or view their values
 //        System.out.println(e1.email);
         // We need to create something that allows us to get the information from the fields and update them properly
+//        System.out.println(e1.getEmail());
+
+        e1.setAge(13);
+        System.out.println(e1.getAge());
+        e1.setAge(-12);
+        System.out.println(e1.getAge());
+
+        e1.setEmail("test@example.com");
         System.out.println(e1.getEmail());
+        e1.setEmail("not_an_email");
+        System.out.println(e1.getEmail());
+
+        e1.setPassword("GoodPassword");
+        System.out.println(e1.getPassword());
+        e1.setPassword("short");
+        System.out.println(e1.getPassword());
     }
 }
