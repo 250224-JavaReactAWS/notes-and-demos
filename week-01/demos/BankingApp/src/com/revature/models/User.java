@@ -83,4 +83,18 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    // Generate a toString method
+    // Recall this comes from the Object class which all classes inherit from
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }

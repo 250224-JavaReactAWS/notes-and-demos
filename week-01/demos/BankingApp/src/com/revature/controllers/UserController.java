@@ -72,6 +72,7 @@ public class UserController {
         }
 
         // At this point the username and passwords should valid and available
+        System.out.println("You have successfully registered");
         return userService.registerNewUser(firstName, lastName, username, password);
     }
 
