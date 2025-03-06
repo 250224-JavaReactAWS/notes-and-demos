@@ -1,8 +1,10 @@
 package com.revature.controllers;
 
+import com.revature.misc.SortByNameComparator;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,6 +31,12 @@ public class UserController {
         // Prints all users in the system
 
         List<User> allUsers = userService.getAllUsers();
+
+        // Using the comparable interface I can now SORT my users using Collections.sort
+//        Collections.sort(allUsers);
+
+        // Using our SortByNameComparator to sort the users by first name
+        Collections.sort(allUsers, new SortByNameComparator());
 
         System.out.println("All Users: ");
         for (User u: allUsers){

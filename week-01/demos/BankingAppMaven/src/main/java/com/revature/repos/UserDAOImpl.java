@@ -25,8 +25,8 @@ public class UserDAOImpl implements UserDAO{
         admin.setRole(Role.ADMIN);
         // Save all of the users to the list
         allUsers.add(customer1);
-        allUsers.add(customer2);
         allUsers.add(admin);
+        allUsers.add(customer2);
 
     }
 

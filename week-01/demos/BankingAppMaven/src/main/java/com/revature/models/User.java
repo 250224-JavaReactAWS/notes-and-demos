@@ -1,6 +1,6 @@
 package com.revature.models;
 
-public class User {
+public class User implements Comparable<User>{
 
     // Let's start by defining all of the fields for our user
 
@@ -96,5 +96,29 @@ public class User {
                 ", username='" + username + '\'' +
                 ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+
+        // What is the COMPARABLE Interface? Why is it important? What do we use it for?
+        // Comparable is an Interface used to define the NATURAL ordering of a class (the default way you want
+        // objects of this class sorted).
+
+        // For users I want them sorted by their UserIds
+
+        // compareTo is a method that takes in an object of the same type and allows you to perform some operation for
+        // sorting
+
+        // Positive numbers means this comes after
+        // Negative numbers means this comes before
+        // 0 means they have the same ranking
+        if (this.getUserId() > o.getUserId()){
+            return 1;
+        } else if( this.getUserId() < o.getUserId()){
+            return -1;
+        } else{
+            return 0;
+        }
     }
 }
