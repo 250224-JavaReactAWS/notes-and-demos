@@ -188,3 +188,67 @@ public class VarargsExample {
   }
 }
 ```
+
+# Comparable and Comparator Interfaces
+[`Comparable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) is an interface which defines the natural ordering for a class. A class must implement `Comparable` if it is to be sorted by the `compareTo()` method.
+```java
+public interface Comparable<T> {
+	public int compareTo(T o);
+}
+```
+
+The `compareTo()` method returns an `int` which is:
+* Zero, if the two objects are equal
+* Negative, if this object is smaller than that
+* Positive, if this object is greater than that
+
+[`Comparator`](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) is an interface which allows you to define a total ordering on some collection of objects. A class that is to be sorted by `compare()` does not have to implement `Comparator`.
+```java
+public interface Comparator<T> {
+	public int compare(T firstObject, T secondObject);
+}
+``` 
+
+# Lambda Expressions
+Lambda expressions are one of the biggest new features of Java 8, and they introduce some important aspects of **functional programming** to Java. The most basic syntax of a lambda expression is:
+
+```java
+parameter(s) -> expression
+```
+
+For example, we can use the `.forEach` method of the `Iterable` interface, which accepts a lambda expression as its argument:
+
+```java
+List<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Charlie");
+names.forEach(str -> System.out.println(str));
+```
+
+This will print out the names just as if we had used a `for` loop. The lambda syntax could also be done with an explicit type declaration for the parameter, but the compiler can infer the type from the value used. For multiple parameters, parentheses are required around them. Also, curly braces are optional for single statements but required for multiple. Finally, the `return` keyword is also optional for a single expression because the value will be returned by default.
+
+#### `.forEach()` method
+The `forEach()` method actually accepts what is called a functional interface as its parameter (specifically a `Consumer`), which the lambda expression then implements at runtime. The `forEach()` method then loops through `names` and passes each element to the lambda expression to be "consumed".
+
+#### Functional Interfaces
+[Functional interfaces](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html) are interfaces that **have only one abstract method**. This method is what lambdas are implementing when they are declared - the parameter types and return types of the lambda must match the functional interface method declaration. The Java 8 JDK comes with many built-in functional interfaces, listed in the Javadocs link above.
+
+We can also use functional interfaces as types to which we can assign lambda functions, like so:
+
+```java
+interface MyFunctionalInt {
+  int doMath(int number);
+}
+
+public class Execute {
+  public static void main(String[] args) {
+    MyFunctionalInt doubleIt = n -> n * 2;
+	MyFunctionalInt subtractIt = n -> n - 2;
+	int result1 = doubleIt.doMath(2);
+	int result2 = subtractIt.doMath(8);
+	System.out.println(result1); // 4
+	System.out.println(result2); // 6
+  }
+}
+```
