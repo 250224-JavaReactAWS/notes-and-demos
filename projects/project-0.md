@@ -11,6 +11,7 @@ A 5-10 minute presentation will be required to demonstrate your project. This wi
 
 ## Technologies Used
 - **Java** (Core programming language)
+- **Maven** (Build Tool and Dependency Management)
 - **JDBC** (Database interaction)
 - **Javalin** (Lightweight web framework)
 - **PostgreSQL** (Relational database)
