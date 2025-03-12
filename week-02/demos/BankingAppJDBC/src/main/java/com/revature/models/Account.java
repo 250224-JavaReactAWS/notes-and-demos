@@ -24,6 +24,10 @@ public class Account {
         accountIdCounter++;
     }
 
+    public Account(){
+
+    }
+
     // Getters and Setters
     public int getAccountId() {
         return accountId;
@@ -55,5 +59,15 @@ public class Account {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", balance=" + balance +
+                ", type=" + type +
+                ", userId=" + userId +
+                '}';
     }
 }

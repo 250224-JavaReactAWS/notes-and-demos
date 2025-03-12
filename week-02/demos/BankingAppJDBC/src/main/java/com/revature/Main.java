@@ -1,11 +1,15 @@
 package com.revature;
 
+import com.revature.controllers.AccountController;
 import com.revature.controllers.UserController;
 import com.revature.models.Role;
 import com.revature.models.User;
+import com.revature.repos.AccountDAO;
+import com.revature.repos.AccountDAOImpl;
 import com.revature.repos.UserDAO;
 import com.revature.misc.OldUserDAOImpl;
 import com.revature.repos.UserDAOImpl;
+import com.revature.services.AccountService;
 import com.revature.services.UserService;
 import com.revature.util.ConnectionUtil;
 
@@ -60,6 +64,14 @@ public class Main {
         // Here's we'll do some simple menu logic to allow the user to interact with the application
         // Login, register and view all users
 
+        // Making our ACCOUNT Objects
+        AccountDAO accountDAO = new AccountDAOImpl();
+        AccountService accountService = new AccountService(accountDAO);
+        AccountController accountController = new AccountController(accountService, scan);
+
+
+
+
         boolean running = true;
         // I want to keep track of who is logged in
         User loggedInUser = null;
@@ -101,15 +113,30 @@ public class Main {
                 // There isn't a lot of logic we can do right now. Here the Customers cannot do anything but the
                 // admin should be able to view all users
                 if (loggedInUser.getRole() == Role.CUSTOMER){
-                    System.out.println("Thanks for signing in, there is no current Customer functionality. Logging out!");
-                    loggedInUser = null;
+                    System.out.println("Please enter a choice. Press 1 to view all of your accounts or " +
+                            "press q to logout");
+
+                    String choice = scan.nextLine();
+                    while (!(choice.equals("1") || choice.equals("q"))){
+                        System.out.println("Invalid choice, please enter a new choice");
+                        choice = scan.nextLine();
+                    }
+
+                    if (choice.equals("1")){
+                        accountController.viewUsersAccountsHandler(loggedInUser.getUserId());
+                    } else {
+                        loggedInUser = null;
+                    }
+
+
                 } else{
                     // Logged in user is an Admin
-                    System.out.println("Please enter a choice. Press 1 to view all users or q to logout");
+                    System.out.println("Please enter a choice. Press 1 to view all users, 2 to view all accounts" +
+                            " or q to logout");
 
                     String choice = scan.nextLine();
 
-                    while (!(choice.equals("1") || choice.equals("q"))){
+                    while (!(choice.equals("1") || choice.equals("q") || choice.equals("2"))){
                         System.out.println("Invalid choice, please enter a new choice");
                         choice = scan.nextLine();
                     }
@@ -119,6 +146,8 @@ public class Main {
                     if (choice.equals("1")){
                         // View all users logic
                         userController.getAllUsersHandler();
+                    } else if (choice.equals("2")){
+                        accountController.viewAllAccountsHandler();
                     } else{
                         loggedInUser = null;
                     }
