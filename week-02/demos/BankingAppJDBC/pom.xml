@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        This file is one of the most important when it comes to working with a Maven project
+        This file contains all of the configuration information for your project including the name, who built it, any
+        properties that need to be set and most importantly the PROJECT DEPENDENCIES
+    -->
+
+    <!--    Project coordinates-->
+    <groupId>com.revature</groupId>
+    <artifactId>BankingAppJDBC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--    Project specific settings -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--
+        This is an XML file. XML is Extensible Markup Language and looks pretty similar to HTML (HyperText Markup Language)
+        The main difference is that you can extend XML and do all sorts of custom tags as needed
+    -->
+    <dependencies>
+        <!--        Inside of this block will be all of the dependencies I pull from the Maven Central Repository
+            The Maven Central Repository is a central repo that allows you to pull code and incorporate it into your project
+            through a dependency line
+        -->
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--        ANY TIME YOU MAKE CHANGES TO YOUR POM.XML FILE YOU NEED TO RELOAD MAVEN-->
+
+    </dependencies>
+
+</project>
