@@ -34,6 +34,10 @@ public class User implements Comparable<User>{
         userIdCounter++;
     }
 
+    public User(){
+
+    }
+
     // Mutators (Getters and Setters)
     public int getUserId(){
         return userId;

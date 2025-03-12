@@ -4,6 +4,7 @@ import com.revature.controllers.UserController;
 import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.repos.UserDAO;
+import com.revature.misc.OldUserDAOImpl;
 import com.revature.repos.UserDAOImpl;
 import com.revature.services.UserService;
 import com.revature.util.ConnectionUtil;
@@ -34,14 +35,25 @@ public class Main {
     public static void main(String[] args) {
 
         // Let's quickly try to get a connection to test things
-        Connection conn = ConnectionUtil.getConnection();
+//        Connection conn = ConnectionUtil.getConnection();
+        // Let's try to get all users before applying everything to our application
+        UserDAO userDAO = new UserDAOImpl();
+//        for(User u: userDAO2.getAll()){
+//            System.out.println(u);
+//        }
+        Scanner scan = new Scanner(System.in);
 
+        // Let's take in some user input to look for the right user
+//        System.out.println("Enter a username:");
+//        String usernameEntered = scan.nextLine();
+//        System.out.println(userDAO2.getUserByUsername(usernameEntered));
 
 
         // Define some variables and make instances of our controllers, services and daos
-        UserDAO userDAO = new UserDAOImpl();
+//        UserDAO userDAO = new OldUserDAOImpl();
+        // NOW WE'RE USING THE NEW IMPLEMENTATION
         UserService userService = new UserService(userDAO);
-        Scanner scan = new Scanner(System.in);
+
 
         UserController userController = new UserController(userService, scan);
 

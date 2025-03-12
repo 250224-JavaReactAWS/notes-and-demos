@@ -1,4 +1,4 @@
-import com.revature.repos.UserDAOImpl;
+import com.revature.misc.OldUserDAOImpl;
 import com.revature.services.UserService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class UserServiceTest {
     TODO Come back here and talk about Mocking
      */
 
-    private UserService userService = new UserService(new UserDAOImpl());
+    private UserService userService = new UserService(new OldUserDAOImpl());
 
     // Test the validate Username and validate password methods
     // We will write 2 tests:  one for more than 8 characters and one for less than 8

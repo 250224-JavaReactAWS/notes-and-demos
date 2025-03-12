@@ -75,7 +75,7 @@ public class ConnectionUtil {
 
 
             conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection established");
+//            System.out.println("Connection established");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not establish connection!");
