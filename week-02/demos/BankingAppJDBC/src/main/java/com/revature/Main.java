@@ -6,7 +6,9 @@ import com.revature.models.User;
 import com.revature.repos.UserDAO;
 import com.revature.repos.UserDAOImpl;
 import com.revature.services.UserService;
+import com.revature.util.ConnectionUtil;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
@@ -30,6 +32,12 @@ public class Main {
      */
 
     public static void main(String[] args) {
+
+        // Let's quickly try to get a connection to test things
+        Connection conn = ConnectionUtil.getConnection();
+
+
+
         // Define some variables and make instances of our controllers, services and daos
         UserDAO userDAO = new UserDAOImpl();
         UserService userService = new UserService(userDAO);
