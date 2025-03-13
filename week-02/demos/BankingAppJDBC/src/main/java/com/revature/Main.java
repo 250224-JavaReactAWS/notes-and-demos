@@ -14,6 +14,7 @@ import com.revature.services.UserService;
 import com.revature.util.ConnectionUtil;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -36,7 +37,7 @@ public class Main {
     and allow a user to interface with the application from here
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         // Let's quickly try to get a connection to test things
 //        Connection conn = ConnectionUtil.getConnection();
@@ -113,17 +114,28 @@ public class Main {
                 // There isn't a lot of logic we can do right now. Here the Customers cannot do anything but the
                 // admin should be able to view all users
                 if (loggedInUser.getRole() == Role.CUSTOMER){
-                    System.out.println("Please enter a choice. Press 1 to view all of your accounts or " +
-                            "press q to logout");
+                    System.out.println("Please enter a choice.");
+                    System.out.println("Press 1 to view all of your accounts");
+                    System.out.println("Press 2 to create a new account");
+                    System.out.println("Press 3 to deposit money to an account you own");
+                    System.out.println("Press 4 to transfer money from account 2 to account 3");
+                    System.out.println("Press q to log out");
 
                     String choice = scan.nextLine();
-                    while (!(choice.equals("1") || choice.equals("q"))){
+                    while (!(choice.equals("1") || choice.equals("q") ||
+                            choice.equals("2") || choice.equals("3") || choice.equals("4"))){
                         System.out.println("Invalid choice, please enter a new choice");
                         choice = scan.nextLine();
                     }
 
                     if (choice.equals("1")){
                         accountController.viewUsersAccountsHandler(loggedInUser.getUserId());
+                    } else if (choice.equals("2")) {
+                        accountController.createNewAccountHandler(loggedInUser.getUserId());
+                    } else if (choice.equals("3")) {
+                        accountController.depositToAccountHandler(loggedInUser.getUserId());
+                    } else if (choice.equals("4")) {
+                        accountDAO.transfer(2,56,1);
                     } else {
                         loggedInUser = null;
                     }

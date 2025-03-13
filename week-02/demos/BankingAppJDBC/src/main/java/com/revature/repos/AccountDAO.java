@@ -2,6 +2,7 @@ package com.revature.repos;
 
 import com.revature.models.Account;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface AccountDAO extends GeneralDAO <Account>{
@@ -19,4 +20,6 @@ public interface AccountDAO extends GeneralDAO <Account>{
     // Other methods we might want
     // Maybe I want to get all of the accounts for a specific user
     List<Account> getAllByUserId(int userId);
+
+    boolean transfer(int fromAccountId, int toAccountId, double amount) throws SQLException;
 }
