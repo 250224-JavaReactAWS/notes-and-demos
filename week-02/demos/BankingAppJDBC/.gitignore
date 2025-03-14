@@ -40,3 +40,6 @@ build/
 
 ### Ignoring Properties file ###
 **/src/main/resources/application.properties
+
+# Ignore our log folder
+logs/
