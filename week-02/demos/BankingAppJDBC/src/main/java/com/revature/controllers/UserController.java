@@ -1,107 +1,125 @@
 package com.revature.controllers;
 
-import com.revature.misc.SortByNameComparator;
+import com.revature.dtos.response.ErrorMessage;
+import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.services.UserService;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import io.javalin.http.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserController {
 
-    /*
-    Typically this class is in charge of web traffic but today it will be in charge of display logic
+    // The controller layer is directly in charge of our Web Traffic
+    // Take in incoming request -> Service Layer as needed -> Format the response
 
-    This class will call upon different methods in the service layer to be used to create a user
-    / login a user / get all users
-     */
+    // Javalin methods for this take in the Context object and all return void
 
-    private UserService userService;
+    // Logging is good for printing out information to the console and to files to be viewed later
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private Scanner scan;
+    private final UserService userService;
 
-    public UserController(UserService userService, Scanner scan){
+
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.scan = scan;
     }
 
-    // TODO Get All Users
-    public void getAllUsersHandler(){
-        // Prints all users in the system
+    // TODO Register a new user
+    public void registerUserHandler(Context ctx){
+        // This method will be called whenever a user need to be created
 
-        List<User> allUsers = userService.getAllUsers();
+        // Take in the user object
+        User requestUser = ctx.bodyAsClass(User.class);
+        // Attempt to read the JSON into this class
 
-        // Using the comparable interface I can now SORT my users using Collections.sort
-//        Collections.sort(allUsers);
-
-        // Using our SortByNameComparator to sort the users by first name
-        Collections.sort(allUsers, new SortByNameComparator());
-
-        System.out.println("All Users: ");
-        for (User u: allUsers){
-            System.out.println(u);
+        // Validate the username, Validate the password and check for username availability
+        if (!userService.validateUsername(requestUser.getUsername())){
+            // This means the password is invalid so we need to return a bad request and stop executing
+            ctx.status(400);
+            ctx.json(new ErrorMessage("Username is not valid. It must be at least 8 characters"));
+            return;
         }
+
+        if (!userService.validatePassword(requestUser.getPassword())){
+            // This means the password is invalid so we need to return a bad request and stop executing
+            ctx.status(400);
+            ctx.json(new ErrorMessage("Password is not valid. It must be at least 8 characters and contain a capital " +
+                    "and lowercase letter"));
+            return;
+        }
+        if (!userService.isUsernameAvailable(requestUser.getUsername())){
+            // This means the password is invalid so we need to return a bad request and stop executing
+            ctx.status(400);
+            ctx.json(new ErrorMessage("Username is not available, please select a new one"));
+
+            // Log a warning for a user attempting to register with a taken name
+            logger.warn("Register attempt made for taken username: " + requestUser.getUsername());
+            return;
+        }
+
+        // Register the user and log them in
+        User registeredUser = userService.registerNewUser(
+                requestUser.getFirstName(),
+                requestUser.getLastName(),
+                requestUser.getUsername(),
+                requestUser.getPassword());
+
+        // If something fails we'll report a server side error
+        if (registeredUser == null){
+            ctx.status(500);
+            ctx.json(new ErrorMessage("Something went wrong!"));
+            return;
+        }
+
+        logger.info("New user registered with username: " + registeredUser.getUsername());
+
+        ctx.status(201);
+        ctx.json(registeredUser);
+
     }
 
-    // TODO Register a New User
-    public User registerNewUser(){
-        // Take in user information for the account
-        // First name
-        System.out.println("What is your first name?");
-        String firstName = scan.nextLine();
-        // Last name
-        System.out.println("What is your last name?");
-        String lastName = scan.nextLine();
-        // Username
-        System.out.println("Enter a Username: ");
-        String username = scan.nextLine();
+    // TODO Login an existing user
+    public void loginHandler(Context ctx){
+        // Get the user from the body
+        User requestUser = ctx.bodyAsClass(User.class);
+        // Attempt to login
+        User returnedUser = userService.loginUser(requestUser.getUsername(), requestUser.getPassword());
 
-        // Validate the username fits our security metrics
-        // TODO tweak logic as needed
-        while (!userService.validateUsername(username) || !userService.isUsernameAvailable(username)){
-            if (!userService.validateUsername(username)){
-                System.out.println("Username must be at least 8 characters! Please enter a new Username: ");
-                username = scan.nextLine();
-            } else {
-                System.out.println("Username is already taken! Please enter a new Username: ");
-                username = scan.nextLine();
-            }
+        // If invalid let them know username or password incorrect
+        if (returnedUser == null){
+            ctx.json(new ErrorMessage("Username or Password Incorrect"));
+            ctx.status(400);
+            return;
         }
+        // If valid return the user and add them to the session
+        ctx.status(200);
+        ctx.json(returnedUser);
 
-        // Password
-        System.out.println("Enter a password: ");
-        String password = scan.nextLine();
-
-        while (!userService.validatePassword(password)){
-            System.out.println("Password must contain an Uppercase letter, lowercase letter and must be at least 8 characters");
-            System.out.println("Please enter a new password: ");
-            password = scan.nextLine();
-        }
-
-        // At this point the username and passwords should valid and available
-        System.out.println("You have successfully registered");
-        return userService.registerNewUser(firstName, lastName, username, password);
+        // Add the userId to the session
+        ctx.sessionAttribute("userId", returnedUser.getUserId());
+        ctx.sessionAttribute("role", returnedUser.getRole());
     }
 
-    // TODO Login a User
-    public User loginUser(){
-        // Take in a username
-        System.out.println("Please enter a username:");
-        String username = scan.nextLine();
-        // Take in a password
-        System.out.println("Please enter a password:");
-        String password = scan.nextLine();
-
-        // Attempt to login the user
-        User returnUser = userService.loginUser(username, password);
-        if (returnUser == null){
-            System.out.println("Username or password incorrect!");
-            return null;
+    // TODO (Admin Only) View All Users
+    public void getAllUsersHandler(Context ctx){
+        // Validate the user is logged in
+        if(ctx.sessionAttribute("userId") == null){
+            // This means the user is NOT logged in
+            ctx.status(401); // UNAUTHORIZED -> Unauthenticated -> We don't know who you are
+            ctx.json(new ErrorMessage("You must be logged in to view this method!"));
+            return;
         }
 
-        System.out.println("Welcome back " + returnUser.getFirstName() +" " + returnUser.getLastName()+ "!");
-        return returnUser;
+        // Validate the logged in user is an admin
+        if (ctx.sessionAttribute("role") != Role.ADMIN){
+            // The user is logged in but they shouldn't be able to access this since they're not an admin
+            ctx.status(403); // FORBIDDEN -> We know who you are but you do not have access to this resource
+            ctx.json(new ErrorMessage("You must be an admin to access this endpoint!"));
+            return;
+        }
 
+        // If admin show the users
+        ctx.json(userService.getAllUsers());
     }
 }
