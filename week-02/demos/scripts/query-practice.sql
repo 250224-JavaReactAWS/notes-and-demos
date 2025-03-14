@@ -109,34 +109,80 @@ insert into employee (id, first_name, last_name, email, department) values (99, 
 insert into employee (id, first_name, last_name, email, department) values (100, 'Thorpe', 'Vanyushin', 'tvanyushin2r@unicef.org', 'Engineering');
 
 -- Insert a new entry for the 101st employee Lexie Vail, her email is lvail0@nyu.edu and she works in Legal
-
+INSERT INTO EMPLOYEE (id, first_name, last_name, email, department) VALUES (101, 'Lexie', 'Vail', 'lvail@nyu.edu', 'Legal');
 -- Insert a new entry for the 102nd employee Horton Farrow, his email is hfarrow1@answers.com and he works in Services
-
+INSERT INTO EMPLOYEE VALUES (102, 'Horton', 'Farrow', 'hfarrow1@answers.com', 'Services');
 -- Update the department of the employee with the id of 45 to Legal
-
+UPDATE employee SET department='Legal' WHERE id = 45;
 -- Update the first and last name of employee number 12 to Jacob Banfield 
-
+UPDATE employee SET first_name='Jacob', last_name = 'Banfield' WHERE id = 12;
 -- Delete any employees with the last name Britt
-
+DELETE FROM employee WHERE last_name='Britt';
 -- Delete any employees in the services department
+DELETE FROM employee WHERE department = 'Services';
 
 -- Select all entries
-
+SELECT * FROM Employee;
 -- Select all first names
-
+SELECT first_name FROM employee;
 -- Select all employees with an ID greater than or equal to 75
-
+SELECT * FROM employee WHERE id >= 75;
 -- Select any employees from the Research and Development department
-
+SELECT * FROM employee WHERE department = 'Research and Development';
 -- Select all employees with an email that ends in .edu
-
+SELECT * FROM EMPLOYEE WHERE email LIKE '%.edu';
 -- Delete all employees with an email that ends in .edu
-
+DELETE FROM EMPLOYEE WHERE email LIKE '%.edu';
 -- Select all employees whose first name ends in 'e' or whose last name starts with 'e'
-
+SELECT * FROM employee WHERE first_name LIKE '%e' OR last_name ILIKE'e%'; 
 -- Select first and last names for all employees, order it alphabetically by last name 
-
+SELECT first_name, last_name FROM employee ORDER BY last_name;
 -- Select all entries for employees with a department that starts with 'a', order them by id from largest to smallest
+SELECT * FROM employee WHERE department LIKE 'A%' ORDER BY id DESC;
+-- Count all of the employees by department, list the department name
+SELECT department, count(department) FROM EMPLOYEE GROUP BY department;
 
--- Count all of the employees by department
+
+-- Add on a cars table
+CREATE TABLE cars(
+	car_id serial PRIMARY KEY,
+	make varchar(50),
+	model varchar(50),
+	emp_id int REFERENCES employee
+);
+
+insert into cars (make, model, emp_id) values ('Nissan', 'Quest', 5);
+insert into cars (make, model, emp_id) values ('Subaru', 'Impreza', 54);
+insert into cars (make, model, emp_id) values ('Dodge', 'Neon', 100);
+insert into cars (make, model, emp_id) values ('BMW', 'Z3', 63);
+insert into cars (make, model, emp_id) values ('Chevrolet', 'Monte Carlo', 83);
+insert into cars (make, model, emp_id) values ('Porsche', '944', 25);
+insert into cars (make, model, emp_id) values ('Suzuki', 'Reno', 92);
+insert into cars (make, model, emp_id) values ('Ford', 'Focus', 39);
+insert into cars (make, model, emp_id) values ('Dodge', 'Magnum', 71);
+insert into cars (make, model, emp_id) values ('Lincoln', 'Town Car', 51);
+
+-- Write a query to show the first name, last name, make and model for all employees who have a car
+SELECT e.first_name, e.last_name, c.make, c.model
+FROM employee e
+JOIN cars c
+ON e.id = c.emp_id
+ORDER BY e.first_name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
