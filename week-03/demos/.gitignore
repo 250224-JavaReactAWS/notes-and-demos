@@ -8,3 +8,5 @@ secret.txt
 
 # You should generally put logs in here so they don't get shared since that can cause merge 
 # conflicts
+
+Existing-file-to-ignore.txt
