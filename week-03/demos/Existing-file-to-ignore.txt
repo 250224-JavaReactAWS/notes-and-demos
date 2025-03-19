@@ -1,3 +1,0 @@
-This is an existing file we want to ignore
-
-Sample change
