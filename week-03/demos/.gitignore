@@ -1,0 +1,10 @@
+# Files insides of here will be ignored when git changes happen so we can put secret files 
+# inside of here and not worry about them getting shared to github
+secret.txt
+
+# Any file we put in here will be ignored
+# This is useful for hiding credentials like usernames, passwords, links, etc in a properties
+# or environment file
+
+# You should generally put logs in here so they don't get shared since that can cause merge 
+# conflicts
