@@ -7,7 +7,7 @@
  * 
  * Indexes/Views
  * 
- * Functions/Procedures as well
+ * Functions/Procedures as well (Watch video on this)
  */
 
 /*
