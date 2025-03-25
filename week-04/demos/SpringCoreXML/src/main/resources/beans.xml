@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+    Inside of here is where we go to define all of the classes we want Spring to manage.
+
+    A Java class that Spring manages is referred to as a Spring Bean. Spring is responsible for the creation,
+    instantiation, maintenance and destruction of the Bean classes
+
+    Spring will create objects and wire them together based off the specifications we provide here
+-->
+
+<!--    This line means Spring will create this class for us and manage it directly-->
+    <bean id="motivationalServiceBean" class="com.revature.services.MotivationalService"/>
+
+<!--    Prototype scope creates a new instance of this bean every time we need one-->
+    <bean id="workoutServiceBean" class="com.revature.services.WorkoutService" scope="prototype"/>
+
+<!--    The next step is to create our Baseball Coach and INJECT these beans through the constructor-->
+
+    <bean id="baseballCoachBean" class="com.revature.models.BaseballCoach">
+<!--        Provide the beans for the constructor-->
+        <constructor-arg ref="motivationalServiceBean" />
+        <constructor-arg ref="workoutServiceBean" />
+    </bean>
+
+    <bean id="trackCoachBean" class="com.revature.models.TrackCoach">
+        <constructor-arg ref="motivationalServiceBean" />
+        <constructor-arg ref="workoutServiceBean" />
+    </bean>
+
+<!--    Let's set up our basketball coach using Setter Injection-->
+
+    <bean id="basketballCoachBean" class="com.revature.models.BasketballCoach" >
+<!--        Lets initialize our properties-->
+        <property name="workoutService" ref="workoutServiceBean" />
+        <property name="motivationalService" ref="motivationalServiceBean" />
+
+<!--        If I want to set regular values I can-->
+        <property name="email" value="lebron.james@nba.com" />
+        <property name="teamName" value="Lakers" />
+    </bean>
+
+</beans>
