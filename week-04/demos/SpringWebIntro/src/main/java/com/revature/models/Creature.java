@@ -18,6 +18,8 @@ public class Creature {
 
     private String name;
 
+    private String country;
+
     private int age;
 
     // THE NO ARGS CONSTRUCTOR IS REQUIRED
@@ -25,9 +27,10 @@ public class Creature {
     public Creature() {
     }
 
-    public Creature(int creatureId, String name, int age) {
+    public Creature(int creatureId, String name, String country, int age) {
         this.creatureId = creatureId;
         this.name = name;
+        this.country = country;
         this.age = age;
     }
 
@@ -53,5 +56,13 @@ public class Creature {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
