@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.revature</groupId>
+	<artifactId>SpringBootDemoApplication</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>SpringBootDemoApplication</name>
+	<description>Our first Spring Boot Project</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+<!--
+	What exactly are Spring Boot Starters? A Spring Boot starter is a dependency that includes both a base Spring
+	project as well as Spring Boot to allow it to run quicker. How does Spring boot do this? Spring Boot is an
+	OPINIONATED FRAMEWORK. A framework is opinionated when it has preset configurations for how it thinks you will
+	likely set up the framework itself. Every Spring project can be wrapped in with a Spring boot starter
+
+	- spring-boot-starter-data-jpa -> Spring Data JPA with Spring Boot
+	- spring-boot-starter-web -> Spring Web with Spring Boot
+-->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
