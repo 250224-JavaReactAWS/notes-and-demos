@@ -101,4 +101,12 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
 }

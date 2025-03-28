@@ -55,7 +55,5 @@ public class UserService {
 
     }
 
-    // Todo view enrollments by user id
 
-    // TODO view all enrollments
 }
