@@ -18,6 +18,9 @@
         the closer it is to the element it's styling, the higher priority it has (in general)
     -->
 
+    <!-- External Stylesheets can be added by the link tag -->
+    <link rel="stylesheet" href="./styles.css">
+
     <!-- Internal Styling -->
      <style>
         /* Inside of here is PURE CSS */
@@ -26,7 +29,7 @@
         #my-special-div{
             /* Everything inside the curly braces will apply to the div */
             border: 2px black dashed;
-            color: green
+            color: green;
         }
 
         /* Classes are used to style similar elements in similar ways, provided they share the class */
@@ -46,6 +49,9 @@
             background-color: blanchedalmond;
         }
      </style>
+
+
+     
 </head>
 <body>
     <h1>CSS Rules are defined in key-value pairs that can be assigned at different locations!</h1>

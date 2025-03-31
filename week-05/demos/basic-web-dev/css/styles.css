@@ -1,0 +1,21 @@
+/* This is an external style sheet. It's used to define styles across various different HTML Pages
+
+When using HTML and CSS this should be the default way you go about doing it, mainly because it can be shared 
+across multiple pages and it can be overridden very easily due to the cascading nature of CSS (priority)
+
+*/
+
+#my-special-div{
+    font-size:xx-large;
+    /* The color red gets overridden by the color green in the internal stylesheet */
+    color: red;
+}
+
+/* In terms of priority, typically the external stylesheet has the LOWEST level of priority, then the internal
+    css has higher priority and then finally inline CSS has the highest.
+
+    Flow:
+        Create an External Stylesheet to be used for multiple pages
+        If a specific page has css updates, we provide that in the internal styling
+        If a specific element is different from everything else in terms of styling, use inline
+*/
