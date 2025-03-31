@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grilled Salmon Recipe</title>
+</head>
+<body>
+    <!-- 
+        The goal for this webpage is to write out a grilled salmon recipe. Typically recipe pages have several
+        different sections with them:
+            - A list of ingredients
+            - Steps to cook the ingredients
+            - Nutritional Facts
+
+        These 3 elements link up pretty nicely with 3 different kinds of elements that we see in html pages: 
+            - Unordered Lists
+            - Ordered Lists
+            - Tables
+    -->
+
+    <h1>Grilled Salmon Recipe</h1>
+
+    <p>Cooking this grilled salmon is quick, easy and delicious. Spice this up with a variety of sides like
+        brocolli or rice and you have a full meal. <a href="./images.html">Example Final Product</a>
+    </p>
+
+    <h2>Ingredients</h2>
+    <!-- 
+        To make an ingredients list, typically this is a bulleted list of items that can be grabbed in 
+        any order. This is a candidate for an unordered list
+    -->
+    <!-- UL is unordered list and LI is list item -->
+    <ul>
+        <li>A large slab of salmon 
+            <!-- <img src="./salmon-fillets.jpg" height="100px"> -->
+        </li>
+        <li>Avocado Oil</li>
+        <li>Your favorite seasonings
+            <!-- Nested UL -->
+            <ul>
+                <li>Salt</li>
+                <li>Black Pepper</li>
+                <li>Paprika</li>
+                <li>Garlic Powder</li>
+                <li>Onion Powder</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Cooking Instructions</h2>
+    <!-- It's important that the cooking instructions are followed in order, so we need to use an ORDERED LIST -->
+    <ol>
+        <li>On a cutting board you can clean easily, slice the slab of salmon into approximately 8oz fillets</li>
+        <li>Preheat grill to 400 degrees F</li>
+        <li>Lightly drizzle oil onto the salmon</li>
+        <li>Generously sprinkle your favorite seasonings on the salmon</li>
+        <li>Grill salmon for 12 minutes started skin side down and flipping after 8 minutes</li>
+    </ol>
+
+    <h2>Nutritional Facts</h2>
+    <!-- A nutritional facts table includes information about a specific component or nutrient and the amount
+     contained in the dish -->
+
+    <table>
+        <!-- This is used to build a table
+            The first row is our HEADERS so we'll use a th tag instead of td
+            In each cell to fill it out we use a td tag
+            Rows start with a tr tag
+        -->
+        <tr>
+            <th>Nutrient</th>
+            <th>Amount Per Serving</th>
+        </tr>
+        <tr>
+            <td>Protein</td>
+            <td>50g</td>
+        </tr>
+        <tr>
+            <td>Sugar</td>
+            <td>0g</td>
+        </tr>
+    </table>
+    
+</body>
+</html>

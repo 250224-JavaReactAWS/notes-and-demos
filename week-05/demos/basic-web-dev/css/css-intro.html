@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to CSS</title>
+
+    <!-- 
+        The second language we're going to cover is CSS or Cascading Style Sheets. HTML outlines the basic 
+        structure and content of our pages, CSS makes it look prettier by changing how elements are rendered
+
+        There are 3 major kinds of CSS:
+        Inline CSS: This is styling done to a specific element by using the style attribute
+        Internal CSS: CSS applied in the head of an html document, applies styling to elements in this doc specifically
+        External CSS: An external sheet imported in using a link tag and can be used for multiple documents
+
+        Each type has its own priority and we'll talk about that, but easiest way to remember is that
+        the closer it is to the element it's styling, the higher priority it has (in general)
+    -->
+
+    <!-- Internal Styling -->
+     <style>
+        /* Inside of here is PURE CSS */
+
+        /* Id Selector -> Idenitfies elements based off their Id value and allows us to apply CSS */
+        #my-special-div{
+            /* Everything inside the curly braces will apply to the div */
+            border: 2px black dashed;
+            color: green
+        }
+
+        /* Classes are used to style similar elements in similar ways, provided they share the class */
+        .div-class{
+            background-color: lemonchiffon;
+            border: 5px slateblue solid;
+            /* Margin allows us to spread elements as needed */
+            margin: 10px;
+        }
+
+        /* Our final basic selector is an ELEMENT selector, allowing us to select all elements of a 
+            specific type and style them
+        */
+
+        span{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: blanchedalmond;
+        }
+     </style>
+</head>
+<body>
+    <h1>CSS Rules are defined in key-value pairs that can be assigned at different locations!</h1>
+
+    <p style="color: goldenrod; background-color: black;">This is an example of inline styling</p>
+    <!-- 
+        Why does the black box extend across the entire page? The Paragraph tag is a BLOCK element. In HTML there
+        are block elements and inline elements. Block elements take up the entire width of their containers 
+        whereas inline elements take up as much space as we allocated to them (usually just enough for the content)
+
+        Let's create a span tag
+    -->
+
+    <span style="color: white; background-color: cadetblue;">This is an inline element alternative to the paragraph element</span>
+    
+    <!-- Internal Styling -->
+
+    <div>
+        <!-- DIVs are divisions in the page, typically used to group related elements -->
+         
+        <h2>Selectors</h2>
+        <h3>Element Class and Id Selectors</h3>
+
+        <div id="my-special-div">
+            <p>This div has a unique identifier called an Id</p>
+            <p>This is a second paragraph in the special div</p>
+        </div>
+
+        <!-- What if I want to select multiple elements to style at once? Use a class -->
+
+        <div class="div-class">
+            <p>This div shares a class with the div below</p>
+        </div>
+
+        <div class="div-class">
+            <p>This div shares a class with the div above</p>
+        </div> 
+
+        <div>
+            <span>This is its own span tag</span>
+        </div>
+
+    </div>
+
+</body>
+</html>

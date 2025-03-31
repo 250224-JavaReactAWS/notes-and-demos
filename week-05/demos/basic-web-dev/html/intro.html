@@ -1,0 +1,102 @@
+<!-- 
+    This is a single or multiline comment in HTML. HTML stands for HyperText Markup Language and it's used
+    to define the structure and basic content of our web pages. The styling of pages will be done with CSS and
+    the functionality of our pages will be done with JS.
+
+    HTML is comprised of 2 major things: elements and attributes. Elements define what is on the page and 
+    attributes can change that info in some way
+-->
+
+<!DOCTYPE html>
+<!-- The very first line in any HTML file is the doctype directive which tells the browser what kind of file it
+    is looking at. This says html which specifically refers to HTML5 which is the current version standard
+-->
+
+<!-- Elements are going to fill the page, typically they have an opening and a closing tag: <p> </p>
+    and content is defined between these tags.
+-->
+
+<html>
+    <!-- The HTML tag is the ROOT tag for the entire html page and everything we want will live inside of it
+        The two major tags under HTML is head and body 
+    -->
+
+    <head>
+        <!-- 
+            The head tag/element is a place where you define certain pieces of metadata about your webpage
+            Typically the things here do not end up directly visible on the page but they're still important
+            to have
+
+            Common HTML Head tags
+            - <title> used for the title of the webpage (tabname)
+            - <style> used for internal CSS styling of the webpage
+            - <script> used to inject some JS into the page
+            - <link> links to external resources, typically stylesheets
+            - <meta> used for metadata and SEO (Search Engine Optimization)
+        -->
+
+        <title>HTML Basics</title>
+    </head>
+
+    <body>
+        <!-- 
+            This is the real content of your webpage. Everything we write inside of here will be directly
+            rendered on the webpage itself.
+
+            There are a variety of tags we can use, some of them are listed below (not exhaustive):
+            <h#> - Used for headers ranging from size 1-6 (h1 is the biggest and h6 is the smallest)
+            <p> - Used for general paragraphs
+            <input> - used for taking in input
+            <b> - used for bolding
+            <img> - used for images
+            <ol>, <ul>, <li> - Used for creating different types of lists
+            <table> - used for tables
+            <div> - Used for a logical division of the page or grouping of elements
+            <a> - Used for linking to another page
+        -->
+
+        <h1>Hello HTML!</h1>
+
+        <p>
+            My name is Bryan Serfozo. I'm a trainer here at Revature and I've been working as a Java 
+            full stack engineer for the past 3 years. I recently got promoted to senior trainer. My 
+            favorite color is green.
+
+
+
+
+
+
+
+
+            Does HTML care about whitespace?
+            <!-- Typically no unless we add in some explicit whitespace -->
+        </p>
+
+        <br>
+        <!-- A <br> tag is a break element that allows us to add in a little bit of space on our pages -->
+        <p>My Second Paragraph</p>
+
+
+        <!-- 
+            Anchor tags (<a>) are used to link to other webpages whether inside your project structure or 
+            some external page as well. To define an achor tag we start with what you might expect.
+
+            To make the anchor tag work we need an attribute. Attributes go along with elements and use key-value
+            pairs to provide details about the element or change its functionality
+
+            Global Attributes (Can be applied to every element):
+            - class
+            - id
+            - hidden
+            - style
+
+            Other elements have specific attributes like href for the <a> tag
+            
+        -->
+
+        <a href="https://google.com">Google.com</a>
+        <br>
+        <a href="https://pokemonshowdown.com">Pokemon Showdown</a>
+    </body>
+</html>
