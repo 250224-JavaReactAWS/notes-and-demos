@@ -1,9 +1,18 @@
 package com.revature.models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "assignments")
+
+// Lombok Annotations
+//@NoArgsConstructor // This adds in a no-args constructor
+//@AllArgsConstructor // This adds in an all-args constructor
+//@Getter
+//@Setter
+//@ToString
+//@EqualsAndHashCode
 public class Assignment {
 
     @Id

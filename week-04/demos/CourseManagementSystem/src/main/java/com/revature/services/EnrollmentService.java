@@ -7,6 +7,7 @@ import com.revature.repos.CourseDAO;
 import com.revature.repos.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,7 @@ public class EnrollmentService {
 
 
     // Todo Enroll in a course
+    @Transactional // Marks this method as needed a transaction for execution
     public Course enrollInCourseHandler(int userId, int courseId){
         // We need to make sure the user exists
         User returnedUser = userDAO.findById(userId).orElseThrow(

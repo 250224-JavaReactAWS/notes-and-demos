@@ -1,12 +1,16 @@
 package com.revature.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "courses")
+//@Data // This is a lombok annotation which combines most of the ones we've seen so far
+//@NoArgsConstructor
 public class Course {
 
     @Id

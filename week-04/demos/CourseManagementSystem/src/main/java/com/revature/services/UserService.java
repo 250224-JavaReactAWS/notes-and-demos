@@ -6,10 +6,12 @@ import com.revature.models.User;
 import com.revature.repos.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional // This applies transactional to every method in the class
 public class UserService {
 
     private final UserDAO userDAO;

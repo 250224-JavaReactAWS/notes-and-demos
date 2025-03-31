@@ -1,11 +1,18 @@
 package com.revature.models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+//@Setter
+//@Data
+//@NoArgsConstructor
 public class User {
 
     @Id
