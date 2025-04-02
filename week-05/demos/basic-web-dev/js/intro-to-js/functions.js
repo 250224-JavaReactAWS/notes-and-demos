@@ -38,7 +38,7 @@ console.log(multiply(8)) // 8*2=16
 // Fun Quirks of JS
 // Truthy/Falsy and Type Coercion
 
-let str = ""
+let str = "false"
 
 if (str){
     console.log("String is true")
@@ -60,4 +60,29 @@ Falsy Values (All of these will convert into false, ANY other value will be true
     NaN
 
 Any value that is NOT THESE will evaluate to true
+
+Why is this happening?
+
+JavaScript is weakly typed meaning when we perform an operation if the datatypes on the operation are not 
+compatible then JS will attent to coerce the type of the variable into whatever it needs to be
 */
+
+let x = "3" / 4
+console.log(x)
+// A string cannot be divided but the string "3" can be converted to a number, so it does that before perfoming
+// the operation. This is called TYPE COERCION and it can be a pain if you're not aware of it
+
+console.log(true + true + true)
+// True converts to 1, so this is 1 + 1 + 1 = 3
+
+
+/*
+JavaScript has 2 equality operators
+== (loose equality) -> Attempts to perform type coercion if needed, checks if the values are the same
+=== (strict equality) -> Checks that both the DATATYPE AND VALUE are equal
+
+If you unsure, default to ===
+*/
+
+console.log("5" == 5) // True
+console.log("5" === 5) // False

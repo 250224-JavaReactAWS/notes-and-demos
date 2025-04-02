@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to events</title>
+</head>
+<body>
+    <!-- 
+        In web development we mark interactions with the page as something called an Event
+        With JS we can listen for these events and do something when they occur
+
+        Click
+        DblClick
+        Drag
+        MouseOver
+        KeyDown
+        etc
+
+        Our goal right now will be to listen for some of these events and do something when they occur
+    -->
+
+    <h1>Register a New User</h1>
+
+    <div id="registerForm">
+        <!-- We'll provide some inputs and some labels to go with them -->
+         
+        <label for="firstNameInput">First Name: </label>
+        <input id="firstNameInput" type="text" placeholder="First Name" >
+
+        <br>
+        <br>
+
+        <label for="lastNameInput">Last Name: </label>
+        <input id="lastNameInput" type="text" placeholder="Last Name" >
+
+        <br>
+        <br>
+
+        <label for="usernameInput">Username: </label>
+        <input id="usernameInput" type="text" placeholder="Username" >
+
+        <br>
+        <br>
+
+        <label for="passwordInput">Password: </label>
+        <input id="passwordInput" type="password" placeholder="Password">
+
+        <br>
+        <br>
+
+        <button id="createUserButton">Register!</button>
+        <!-- Goal will be to make something happen when the button gets clicked -->
+
+    </div>
+    
+    <script src="events.js"></script>
+</body>
+</html>
