@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("enrollments")
+@CrossOrigin(origins = "http://127.0.0.1:5500") // This allows requests to come in from http://localhost:5500
 public class EnrollmentController {
 
     private final EnrollmentService enrollmentService;

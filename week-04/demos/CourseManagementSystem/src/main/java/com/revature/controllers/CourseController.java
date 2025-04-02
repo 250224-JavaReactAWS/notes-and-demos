@@ -17,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("courses") // http://localhost:8080/courses
+@CrossOrigin(origins = "http://127.0.0.1:5500") // This allows requests to come in from http://localhost:5500
 public class CourseController {
 
     private final CourseService courseService;

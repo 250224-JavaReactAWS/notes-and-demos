@@ -40,7 +40,7 @@ function registerNewUser(){
 // This is done through an EVENT LISTENER which listens for specific events on specific elements
 // If they occur the function is executed
 
-createUserButton.addEventListener('click', registerNewUser)
+// createUserButton.addEventListener('click', registerNewUser)
 
 // createUserButton.removeEventListener('click', registerNewUser)
 
@@ -64,3 +64,56 @@ function printPressed(event){
 
     console.log(`The key pressed was ${event.key}`)
 }
+
+// NOTE We should've been using email instead of password but it's not a big deal
+
+/*
+Async and Await
+
+Also introduced in ES6 were the async and await keywords.
+    - Async allows for a function to be treated asynchronously
+    - Await is a keyword (only allowed inside async functions) that allows us to directly wait for the value of
+    a promise
+
+These were added in to help with handling async calls
+*/
+
+async function registerNewUserAPI(){
+
+    let user = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+        email: usernameInput.value,
+        password: passwordInput.value
+    }
+
+    // Let's construct a fetch request to handle send this info
+
+    let data = await fetch("http://localhost:8080/users/register", {
+        // The second thing the fetch request takes in is an initialization object which allows us to 
+        // customize the request
+        method: "POST",
+
+        // The first time I send this request I had a 415 Unsupported Media Type error and this is because I
+        // sent the data as text (this is the default) instead of JSON
+        // We can fix this in the request headers
+        headers : {
+            // Inside of here we'll have various key pairs that help the server parse our request
+            'Content-Type': 'application/json'
+        },
+
+        // We'll stringify our body by using JSON.stringify
+        body: JSON.stringify(user)
+    }).catch(err => console.log("Could not register"))
+
+    // The await keyword will allow us to hold the function until a promise has been resolved
+    // Convert the response into a JS object (this is also an async function)
+    let res = await data.json()
+
+    console.log(res)
+
+    
+}
+
+// Add the new event listener
+createUserButton.addEventListener('click', registerNewUserAPI)
