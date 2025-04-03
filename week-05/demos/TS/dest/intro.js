@@ -31,6 +31,8 @@ Tuples
 Union Types
 Arrays
 Never
+Type Aliases
+Interfaces
 */
 // TS supports both explicit and implicit type declaration
 // Explicit Type Declaration
