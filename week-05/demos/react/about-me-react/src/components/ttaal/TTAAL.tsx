@@ -51,7 +51,6 @@ function TTAAL() {
             {/* Right now this is good, but if I started adding more facts I'd be copying this line a lot
              Solution: Use a map
             */}
-
             {
                 facts.map((fact) => {
                     return <Fact
@@ -59,8 +58,10 @@ function TTAAL() {
                     // fact={fact.fact}
                     // isTrue={fact.isTrue}
                     // Since the props for Fact are of type FactProps and a fact in facts is a FactProp, we 
-                    // can use a destructing argument to pass all the value
+                    // can use a spread operator to divide up the argument
                     {...fact}
+                    // TODO will circle back to this
+                    key={fact.id}
                     ></Fact>
                 })
             }
