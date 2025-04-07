@@ -1,0 +1,7 @@
+.course {
+    border: 2px black solid;
+    border-radius: 10px;
+    margin: 20px;
+    width: 200px;
+    text-align: center;
+}
