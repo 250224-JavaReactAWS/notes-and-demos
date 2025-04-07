@@ -5,6 +5,9 @@ import Counter from './components/state-intro/counter/Counter'
 import CounterContainer from './components/state-intro/counter-container/CounterContainer'
 import Parent from './components/props/parent/Parent'
 import ContextProvider from './components/context/ContextProvider'
+import Events from './components/events/Events'
+import ConditionalRendering from './components/conditional-rendering/ConditionalRendering'
+import AxiosFetch from './components/axios-fetch/AxiosFetch'
 
 function App() {
 
@@ -22,6 +25,9 @@ function App() {
           <Route path='/shared-counter' element={<CounterContainer />}/>
           <Route path='/props' element={<Parent />} />
           <Route path='/context' element={<ContextProvider />} />
+          <Route path='/events' element={<Events />}/>
+          <Route path='/conditional-rendering' element={<ConditionalRendering />}/>
+          <Route path='/axios-fetch' element={<AxiosFetch />}/>
         </Routes>
       
       
