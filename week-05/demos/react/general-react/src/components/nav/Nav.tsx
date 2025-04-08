@@ -12,6 +12,9 @@ function Nav() {
             <li><Link to="/events">Events</Link></li>
             <li><Link to="/conditional-rendering">Conditional Rendering</Link></li>
             <li><Link to="/axios-fetch">Axios and Fetch</Link></li>
+            <li><Link to="/refs">Refs</Link></li>
+            <li><Link to="/controlled-uncontrolled">Controlled/Uncontrolled Components</Link></li>
+            <li><Link to="/testing">Test</Link></li>
         </ul>
     </nav>
   )

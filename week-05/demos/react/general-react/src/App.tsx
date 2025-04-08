@@ -8,8 +8,19 @@ import ContextProvider from './components/context/ContextProvider'
 import Events from './components/events/Events'
 import ConditionalRendering from './components/conditional-rendering/ConditionalRendering'
 import AxiosFetch from './components/axios-fetch/AxiosFetch'
+import Refs from './components/refs/Refs'
+import FormContainer from './components/controlled-uncontrolled/FormContainer'
+import withLoading from './components/hoc/WithLoading'
+import DataComponent from './components/hoc/DataComponent'
+import TestCounter from './components/counter-testing/TestCounter'
 
 function App() {
+
+  // Inside of here I'm going to add in my HOC (Higher Order Component) which wraps around the other component
+  // The idea is that the function will get called on the Component itself and from there it will render one
+  // of two things depending on the "isLoading" value. If isLoading is true it'll just say "Loading..." otherwise
+  // it shows the component itself
+  
 
   return (
     // What is this empty tag here?
@@ -28,6 +39,9 @@ function App() {
           <Route path='/events' element={<Events />}/>
           <Route path='/conditional-rendering' element={<ConditionalRendering />}/>
           <Route path='/axios-fetch' element={<AxiosFetch />}/>
+          <Route path='/refs' element={<Refs />}/>
+          <Route path='/controlled-uncontrolled' element={<FormContainer/>}/>
+          <Route path='/testing' element={<TestCounter/>}/>
         </Routes>
       
       
