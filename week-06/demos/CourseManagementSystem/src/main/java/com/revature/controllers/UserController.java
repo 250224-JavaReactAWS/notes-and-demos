@@ -2,6 +2,8 @@ package com.revature.controllers;
 
 import com.revature.exceptions.EmailAlreadyTakenException;
 import com.revature.exceptions.InvalidCredentialsException;
+import com.revature.exceptions.UnauthenticatedException;
+import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -79,5 +81,26 @@ public class UserController {
         return Map.of(
                 "error", e.getMessage()
         );
+    }
+
+    // We're adding an endpoint to validate that a user is logged in and return their role
+    @GetMapping("session")
+    public String getCurrentRoleHandler(HttpSession session){
+        if (session.getAttribute("role") == null){
+            // This means we are not authenticated
+            throw new UnauthenticatedException("Not logged in!");
+        }
+
+        Role role = (Role) session.getAttribute("role");
+
+        return role.toString();
+
+    }
+
+    // Logout Endpoint
+    @PostMapping("logout")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void logoutHandler(HttpSession session){
+        session.invalidate();
     }
 }
